@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define any environment variables here
+        REPO_URL = 'https://github.com/your-username/fitness-lifestyle.git'
+        BRANCH = 'main'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out the code from GitHub...'
+                git branch: "${BRANCH}", url: "${REPO_URL}"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the website...'
+                // Add any build steps here (e.g., npm install, etc.)
+                sh 'echo "No build steps required for static HTML/CSS."'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Add any test steps here (e.g., linting, unit tests, etc.)
+                sh 'echo "No tests defined yet."'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the website...'
+                // Add deployment steps here (e.g., copying files to a server, deploying to S3, etc.)
+                sh 'echo "Deployment steps not defined yet."'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
